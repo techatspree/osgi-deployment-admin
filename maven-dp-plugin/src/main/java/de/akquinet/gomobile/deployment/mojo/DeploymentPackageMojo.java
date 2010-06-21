@@ -524,16 +524,26 @@ public class DeploymentPackageMojo extends AbstractMojo {
      * @param groupId the groupId of the artifact to resolve
      * @param artifactId the artifactId of the artifact to resolve
      * @param version the version of the artifact to resolve
+     * @param classifier the classifier of the artifact to resolve
      * @return the resolved file handle of the artifact
      * @throws MojoExecutionException
      */
     public final File resolveResource(final String groupId,
-            final String artifactId, final String version)
+            final String artifactId, final String version, final String classifier)
             throws MojoExecutionException {
         try {
-            final Artifact artifact = getArtifactFactory()
+            
+            Artifact artifact = null;
+            if (classifier == null) {            
+                artifact = getArtifactFactory()
                     .createArtifact(groupId, artifactId, version,
                             Artifact.SCOPE_RUNTIME, "jar");
+            } else {
+                artifact = getArtifactFactory()
+                    .createArtifactWithClassifier(groupId, artifactId, version,
+                        "jar", classifier);
+            }
+            
             getArtifactResolver().resolve(artifact, getRemoteRepositories(),
                     getLocalRepository());
             final File artifactFile = artifact.getFile();

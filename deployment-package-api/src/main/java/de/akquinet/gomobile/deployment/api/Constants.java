@@ -1,7 +1,7 @@
 package de.akquinet.gomobile.deployment.api;
 
 /**
- * Copy of org.apache.felix.deploymentadmin.Constants of org.apache.felix.deploymentadmin.
+ * Just some constants.
  */
 public interface Constants extends org.osgi.framework.Constants
 {

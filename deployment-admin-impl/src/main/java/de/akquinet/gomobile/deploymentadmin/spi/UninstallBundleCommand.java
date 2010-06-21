@@ -17,7 +17,7 @@ import de.akquinet.gomobile.deploymentadmin.AbstractDeploymentPackage;
  *
  * By spec every single bundle of the target package should be stopped, even if this is not strictly necessary
  * because of bundles being unaffected by an update. To be able to skip the stopping of unaffected bundles the
- * following system property can be defined: <code>org.apache.felix.deploymentadmin.stopunaffectedbundle</code>.
+ * following system property can be defined: <code>de.akquinet.gomobile.deploymentadmin.stopunaffectedbundle</code>.
  * If this property has value <code>false</code> (case insensitive) then unaffected bundles will not be stopped,
  * in all other cases the bundles will be stopped according to the OSGi specification.
  */

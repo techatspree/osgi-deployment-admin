@@ -25,6 +25,8 @@ public class BundleResource implements Resource {
     private String m_artifactId;
 
     private String m_version;
+    
+    private String m_classifier;
 
     private File m_resolvedFile;
 
@@ -54,7 +56,7 @@ public class BundleResource implements Resource {
     public void resolve(DeploymentPackage dp) throws MojoExecutionException {
         if (m_resolvedFile == null) {
             m_resolvedFile = m_mojo.resolveResource(m_groupId, m_artifactId,
-                    m_version);
+                    m_version, m_classifier);
 
             try {
                 m_bundle.setURL(m_resolvedFile.toURI().toURL());
@@ -133,6 +135,20 @@ public class BundleResource implements Resource {
     public final void setGroupId(final String group) {
         m_groupId = group;
     }
+    
+    /**
+     * @return the classifier
+     */
+    public final String getClassifier() {
+        return m_classifier;
+    }
+
+    /**
+     * @param group the groupId to set
+     */
+    public final void setClassifier(final String classifier) {
+        m_classifier = classifier;
+    }
 
     /**
      * @return the artifactId
@@ -172,7 +188,7 @@ public class BundleResource implements Resource {
         	System.out.println("Artifact : " + m_groupId + ":" + m_artifactId + ":" + m_version);
 
             m_resolvedFile = m_mojo.resolveResource(m_groupId, m_artifactId,
-                    m_version);
+                    m_version, m_classifier);
             try {
                 m_bundle.setURL(m_resolvedFile.toURI().toURL());
             } catch (Exception e) {

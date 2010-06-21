@@ -58,8 +58,8 @@ public abstract class AbstractDeploymentPackage implements DeploymentPackage {
         public ResourceInfoImpl[] getOrderedResourceInfos() { return new ResourceInfoImpl[] {}; }
         public InputStream getCurrentEntryStream() { throw new UnsupportedOperationException(); }
         public AbstractInfo getNextEntry() throws IOException { throw new UnsupportedOperationException(); }
-		public String getDisplayName() { return null; }
-		public URL getIcon() { return null;	}
+        public String getDisplayName() { return null; }
+        public URL getIcon() { return null;	}
     };
 
     /* Constructor only for use by the emptyPackage static variable */
@@ -155,39 +155,39 @@ public abstract class AbstractDeploymentPackage implements DeploymentPackage {
     }
 
     public String getDisplayName() {
-    	return m_manifest.getHeader("DeploymentPackage-Name");
+        return m_manifest.getHeader("DeploymentPackage-Name");
 
     }
 
-	public URL getIcon() {
-		String url = m_manifest.getHeader("DeploymentPackage-Icon");
-		if (url == null) {
-			return null;
-		} else {
-			// Do a local copy
-			try {
-				URL u = new URL(url);
-				File dest = m_bundleContext.getDataFile(getName() + "-icon");
-				if (dest == null) {
-					return null;
-				}
-				write(u.openStream(), new FileOutputStream(dest));
-				return dest.toURI().toURL();
-			} catch (IOException e) {
-				//TODO Log This
-				return null;
-			}
-		}
-	}
+    public URL getIcon() {
+        String url = m_manifest.getHeader("DeploymentPackage-Icon");
+        if (url == null) {
+            return null;
+        } else {
+            // Do a local copy
+            try {
+                URL u = new URL(url);
+                File dest = m_bundleContext.getDataFile(getName() + "-icon");
+                if (dest == null) {
+                    return null;
+                }
+                write(u.openStream(), new FileOutputStream(dest));
+                return dest.toURI().toURL();
+            } catch (IOException e) {
+                //TODO Log This
+                return null;
+            }
+        }
+    }
 
-	public static void write(InputStream in, OutputStream out) throws IOException {
-		byte[] b = new byte[4096];
-		for (int n; (n = in.read(b)) != -1;) {
-			out.write(b, 0, n);
-		}
-		in.close();
-		out.close();
-	}
+    public static void write(InputStream in, OutputStream out) throws IOException {
+        byte[] b = new byte[4096];
+        for (int n; (n = in.read(b)) != -1;) {
+            out.write(b, 0, n);
+        }
+        in.close();
+        out.close();
+    }
 
 
 

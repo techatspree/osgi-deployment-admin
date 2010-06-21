@@ -1,94 +1,106 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>de.akquinet.gomobile</groupId>
-    <artifactId>maven-dp-plugin-it</artifactId>
-    <name>maven-dp-plugin-it</name>
-    <version>0.9.0-SNAPSHOT</version>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>de.akquinet.gomobile</groupId>
+	<artifactId>maven-dp-plugin-it</artifactId>
+	<name>maven-dp-plugin-it</name>
+	<version>0.9.0-SNAPSHOT</version>
 
-    <repositories>
-        <repository>
-            <id>apache.snapshots</id>
-            <name>apache.snapshots</name>
-            <url>https://repository.apache.org/content/repositories/snapshots/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-    </repositories>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<type>jar</type>
+			<scope>test</scope>
+		</dependency>
 
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.7</version>
-            <type>jar</type>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.apache.maven.its</groupId>
+			<artifactId>maven-it-helper</artifactId>
+			<version>2.1-SNAPSHOT</version>
+			<!-- TODO: not transitive in tests artifact, so must be left in main scope
+				<scope>test</scope> -->
+		</dependency>
+		<dependency>
+			<groupId>org.apache.maven.shared</groupId>
+			<artifactId>maven-verifier</artifactId>
+			<version>1.2</version>
+			<!-- TODO: not transitive in tests artifact, so must be left in main scope
+				<scope>test</scope> -->
+		</dependency>
+		<dependency>
+			<groupId>de.akquinet.gomobile</groupId>
+			<artifactId>deployment-package-api</artifactId>
+			<version>1.0.0</version>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
 
-        <dependency>
-            <groupId>org.apache.maven.its</groupId>
-            <artifactId>maven-it-helper</artifactId>
-            <version>2.1-SNAPSHOT</version>
-            <!--
-                TODO: not transitive in tests artifact, so must be left
-                in main scope <scope>test</scope>
-            -->
-        </dependency>
-        <dependency>
-            <groupId>org.apache.maven.shared</groupId>
-            <artifactId>maven-verifier</artifactId>
-            <version>1.2</version>
-            <!--
-                TODO: not transitive in tests artifact, so must be left
-                in main scope <scope>test</scope>
-            -->
-        </dependency>
-        <dependency>
-            <groupId>de.akquinet.gomobile</groupId>
-            <artifactId>deployment-package-api</artifactId>
-            <version>0.9.0-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
-    </dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.5</source>
-                    <target>1.5</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ats.snapshots</id>
-            <name>Snapshots</name>
-            <url>http://nexus.spree.de:8081/nexus/content/repositories/snapshots
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ats.snapshots</id>
+			<name>Snapshots</name>
+			<url>http://nexus.spree.de:8081/nexus/content/repositories/snapshots
             </url>
-        </snapshotRepository>
-        <repository>
-            <id>ats.releases</id>
-            <name>Releases</name>
-            <url>http://nexus.spree.de:8081/nexus/content/repositories/releases</url>
-        </repository>
-    </distributionManagement>
+		</snapshotRepository>
+		<repository>
+			<id>ats.releases</id>
+			<name>Releases</name>
+			<url>http://nexus.spree.de:8081/nexus/content/repositories/releases</url>
+		</repository>
+	</distributionManagement>
+
+	<repositories>
+		<repository>
+			<id>ats.releases</id>
+			<name>ATS Repository</name>
+			<url>http://nexus.spree.de:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+
+		<repository>
+			<id>ats.snapshots</id>
+			<name>ATS Snapshots Repository</name>
+			<url>http://nexus.spree.de:8081/nexus/content/groups/public-snapshots/
+			</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 </project>
