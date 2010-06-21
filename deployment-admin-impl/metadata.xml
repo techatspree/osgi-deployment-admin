@@ -1,0 +1,14 @@
+<ipojo>
+  <component classname="de.akquinet.gomobile.deploymentadmin.DeploymentAdminImpl">
+    <provides/>
+
+    <requires field="m_logService" optional="true"/>
+    <requires field="m_packageAdmin"/>
+    <requires field="m_eventAdmin" optional="true"/>
+
+    <callback transition="validate" method="start"/>
+    <callback transition="invalidate" method="stop"/>
+  </component>
+
+  <instance component="de.akquinet.gomobile.deploymentadmin.DeploymentAdminImpl"/>
+</ipojo>

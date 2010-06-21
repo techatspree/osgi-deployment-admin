@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MetaData xmlns:metatype="http://www.osgi.org/xmlns/metatype/v1.1.0">
+  <OCD id="props" name="props">
+    <AD id="props" type="String" cardinality="1" />
+  </OCD>
+  <Designate pid="de.akquinet.gomobile.x" bundle="osgi-dp:de.akquinet.gomobile.configurable">
+  <Object ocdref="props">
+  <Attribute adref="props" content="value"></Attribute>
+  </Object>
+  </Designate>
+</MetaData>

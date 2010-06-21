@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MetaData xmlns:metatype="http://www.osgi.org/xmlns/metatype/v1.1.0">
+  <OCD id="port" name="port">
+    <AD id="org.osgi.service.http.port" type="String" cardinality="1" />
+  </OCD>
+  <Designate pid="org.ops4j.pax.web" bundle="osgi-dp:org.ops4j.pax.web.pax-web-jetty-bundle">
+  <Object ocdref="port">
+  <Attribute adref="org.osgi.service.http.port" content="8181"></Attribute>
+  </Object>
+  </Designate>
+</MetaData>

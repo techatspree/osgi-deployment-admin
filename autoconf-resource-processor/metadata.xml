@@ -1,0 +1,15 @@
+<ipojo>
+  <component classname="de.akquinet.gomobile.deployment.rp.autoconf.AutoConfResourceProcessor">
+    <provides>
+      <property name="service.pid" type="string" value="org.osgi.deployment.rp.autoconf"/>
+    </provides>
+
+    <requires field="m_configAdmin"/>
+    <requires field="m_metatypeService" optional="true"/>
+    <requires field="m_logService" optional="true"/>
+
+    <callback transition="validate" method="start"/>
+  </component>
+
+  <instance component="de.akquinet.gomobile.deployment.rp.autoconf.AutoConfResourceProcessor"/>
+</ipojo>

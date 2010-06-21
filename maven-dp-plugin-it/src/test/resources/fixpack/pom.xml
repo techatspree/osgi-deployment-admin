@@ -1,0 +1,40 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>de.akquinet.gomobile.deployment.test</groupId>
+  <artifactId>test-fixpack</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>deployment-package</packaging>
+
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>de.akquinet.gomobile</groupId>
+        <artifactId>maven-dp-plugin</artifactId>
+        <extensions>true</extensions>
+        <version>0.9.0-SNAPSHOT</version>
+        <configuration>
+          <writeExtraData>true</writeExtraData>
+          <deploymentPackage>
+            <fixPack>[1.0.0, 2.0.0)</fixPack>
+            <resources>
+              <bundleResource>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.apache.felix.bundlerepository</artifactId>
+                <version>1.4.2</version>
+                <missing>true</missing>
+              </bundleResource>
+              <bundleResource>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>org.apache.felix.log</artifactId>
+                <version>1.0.0</version>
+                <targetPath>bundles</targetPath>
+              </bundleResource>
+            </resources>
+          </deploymentPackage>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
