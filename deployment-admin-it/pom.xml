@@ -43,6 +43,13 @@
       <groupId>org.osgi</groupId>
       <artifactId>org.osgi.compendium</artifactId>
     </dependency>
+
+    <dependency>
+        <groupId>org.apache.felix</groupId>
+        <artifactId>org.apache.felix.eventadmin</artifactId>
+        <version>1.0.0</version>
+    </dependency>
+
     <!-- Pax Exam API: -->
     <dependency>
       <groupId>org.ops4j.pax.exam</groupId>
@@ -88,6 +95,33 @@
       <scope>compile</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.ipojo</artifactId>
+      <version>1.6.8</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.felix</groupId>
+      <artifactId>org.apache.felix.configadmin</artifactId>
+      <version>1.2.8</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>de.akquinet.gomobile</groupId>
+      <artifactId>deployment-admin-impl</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>de.akquinet.gomobile</groupId>
+      <artifactId>deployment-package-api</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>de.akquinet.gomobile</groupId>
+      <artifactId>autoconf-resource-processor</artifactId>
+      <version>${project.version}</version>
+    </dependency>
   </dependencies>
 
 </project>
