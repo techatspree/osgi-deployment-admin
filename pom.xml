@@ -110,14 +110,14 @@
         <artifactId>org.osgi.core</artifactId>
         <version>4.0.0</version>
         <type>jar</type>
-        <scope>compile</scope>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.osgi</groupId>
         <artifactId>org.osgi.compendium</artifactId>
         <version>4.2.0</version>
         <type>jar</type>
-        <scope>compile</scope>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>org.ops4j.pax.exam</groupId>
