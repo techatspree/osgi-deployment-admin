@@ -56,11 +56,11 @@ public class Helper {
 
     public static Option getDPBundles() {
        return  provision(
-               mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.configadmin").version("1.2.4"),
-                mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.ipojo").version("1.4.0"),
-                wrappedBundle(mavenBundle().groupId("de.akquinet.gomobile").artifactId("deployment-package-api").version("0.9.0-SNAPSHOT")),
-                mavenBundle().groupId("de.akquinet.gomobile").artifactId("deployment-admin-impl").version("0.9.0-SNAPSHOT"),
-                mavenBundle().groupId("de.akquinet.gomobile").artifactId("autoconf-resource-processor").version("0.9.0-SNAPSHOT")
+               mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.configadmin").versionAsInProject(),
+                mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.ipojo").versionAsInProject(),
+                wrappedBundle(mavenBundle().groupId("de.akquinet.gomobile").artifactId("deployment-package-api").versionAsInProject()),
+                mavenBundle().groupId("de.akquinet.gomobile").artifactId("deployment-admin-impl").versionAsInProject(),
+                mavenBundle().groupId("de.akquinet.gomobile").artifactId("autoconf-resource-processor").versionAsInProject()
         );
     }
 
@@ -117,11 +117,11 @@ public class Helper {
     }
 
     public static File createBundleV1() {
-    	File file = new File("target/dp-test/bundle-v1.jar");
+        File file = new File("target/dp-test/bundle-v1.jar");
         if (file.exists()) {
             return file;
         } else {
-        	file.getParentFile().mkdirs();
+            file.getParentFile().mkdirs();
             return newBundle()
             .addClass( MyActivator.class )
             .prepare(
@@ -135,11 +135,11 @@ public class Helper {
     }
 
     public static File createBundleV2() {
-    	File file = new File("target/dp-test/bundle-v2.jar");
+        File file = new File("target/dp-test/bundle-v2.jar");
         if (file.exists()) {
             return file;
         } else {
-        	file.getParentFile().mkdirs();
+            file.getParentFile().mkdirs();
             return newBundle()
             .addClass( MyActivator.class )
             .prepare(

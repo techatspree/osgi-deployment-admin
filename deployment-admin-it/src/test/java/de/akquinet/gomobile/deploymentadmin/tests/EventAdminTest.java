@@ -62,7 +62,7 @@ public class EventAdminTest extends Helper {
                    systemProperty("dp1v2").value(dp1v2),
                    Helper.getDPBundles(),
                    provision(
-                           mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.eventadmin").version("1.0.0")
+                           mavenBundle().groupId("org.apache.felix").artifactId("org.apache.felix.eventadmin").versionAsInProject()
                    ));
            return opt;
        }
@@ -70,66 +70,66 @@ public class EventAdminTest extends Helper {
 
     private class EventCollector implements EventHandler {
 
-    	private final BundleContext context;
-    	private final String[] topics;
-    	private final List<Event> events = new ArrayList<Event>();
-    	private ServiceRegistration reg;
+        private final BundleContext context;
+        private final String[] topics;
+        private final List<Event> events = new ArrayList<Event>();
+        private ServiceRegistration reg;
 
-    	public EventCollector(BundleContext bc, String[] topics) {
-    		context = bc;
-    		this.topics = topics;
-    	}
+        public EventCollector(BundleContext bc, String[] topics) {
+            context = bc;
+            this.topics = topics;
+        }
 
-		public void handleEvent(Event event) {
-			synchronized (this) {
-				events.add(event);
-			}
-		}
+        public void handleEvent(Event event) {
+            synchronized (this) {
+                events.add(event);
+            }
+        }
 
-		public void start() {
-			if (reg != null) {
-				reg.unregister();
-			} else {
-				Dictionary dict = new Properties();
-				dict.put(EventConstants.EVENT_TOPIC, topics);
-				reg = context.registerService(EventHandler.class.getName(), this, dict);
-			}
-		}
+        public void start() {
+            if (reg != null) {
+                reg.unregister();
+            } else {
+                Dictionary dict = new Properties();
+                dict.put(EventConstants.EVENT_TOPIC, topics);
+                reg = context.registerService(EventHandler.class.getName(), this, dict);
+            }
+        }
 
-		public void stop() {
-			if (reg != null) {
-				reg.unregister();
-				reg = null;
-			}
-		}
+        public void stop() {
+            if (reg != null) {
+                reg.unregister();
+                reg = null;
+            }
+        }
 
-		public void clear() {
-			synchronized (this) {
-				events.clear();
-			}
-		}
+        public void clear() {
+            synchronized (this) {
+                events.clear();
+            }
+        }
 
-		public List<Event> getEvents() {
-			synchronized (this) {
-				return new ArrayList<Event>(events);
-			}
-		}
+        public List<Event> getEvents() {
+            synchronized (this) {
+                return new ArrayList<Event>(events);
+            }
+        }
 
-		public List<Event> getEventsFromTopic(String topic) {
-			List<Event> result = new ArrayList<Event>();
-			List<Event> list = null ;
-			synchronized (this) {
-				list = new ArrayList<Event>(events);
-			}
+        public List<Event> getEventsFromTopic(String topic) {
+            List<Event> result = new ArrayList<Event>();
+            List<Event> list = null ;
+            synchronized (this) {
+                list = new ArrayList<Event>(events);
+            }
 
-			for (Event ev : list) {
-				if (ev.getTopic().equals(topic)) {
-					result.add(ev);
-				}
-			}
+            for (Event ev : list) {
+                if (ev.getTopic().equals(topic)) {
+                    result.add(ev);
+                }
+            }
 
-			return result;
-		}
+            return result;
+        }
 
     }
 
@@ -139,7 +139,7 @@ public class EventAdminTest extends Helper {
         Assert.assertNotNull(admin);
 
         EventCollector collector = new EventCollector(context, new String[] {"org/osgi/service/deployment/INSTALL",
-        		"org/osgi/service/deployment/UNINSTALL", "org/osgi/service/deployment/COMPLETE"});
+                "org/osgi/service/deployment/UNINSTALL", "org/osgi/service/deployment/COMPLETE"});
         collector.start();
 
         URL d = new URL((String)context.getProperty("dp1"));
@@ -200,7 +200,7 @@ public class EventAdminTest extends Helper {
         Assert.assertNotNull(admin);
 
         EventCollector collector = new EventCollector(context, new String[] {"org/osgi/service/deployment/INSTALL",
-        		"org/osgi/service/deployment/UNINSTALL", "org/osgi/service/deployment/COMPLETE"});
+                "org/osgi/service/deployment/UNINSTALL", "org/osgi/service/deployment/COMPLETE"});
         collector.start();
 
         URL d = new URL((String)context.getProperty("dp1"));
@@ -288,7 +288,7 @@ public class EventAdminTest extends Helper {
         Assert.assertNotNull(admin);
 
         EventCollector collector = new EventCollector(context, new String[] {"org/osgi/service/deployment/INSTALL",
-        		"org/osgi/service/deployment/UNINSTALL", "org/osgi/service/deployment/COMPLETE"});
+                "org/osgi/service/deployment/UNINSTALL", "org/osgi/service/deployment/COMPLETE"});
         collector.start();
 
         URL d = new URL((String)context.getProperty("dp1"));
@@ -354,7 +354,7 @@ public class EventAdminTest extends Helper {
         Assert.assertNotNull(admin);
 
         EventCollector collector = new EventCollector(context, new String[] {"org/osgi/service/deployment/INSTALL",
-        		"org/osgi/service/deployment/UNINSTALL", "org/osgi/service/deployment/COMPLETE"});
+                "org/osgi/service/deployment/UNINSTALL", "org/osgi/service/deployment/COMPLETE"});
         collector.start();
 
         ServiceReference ca = context.getServiceReference(ConfigurationAdmin.class.getName());
